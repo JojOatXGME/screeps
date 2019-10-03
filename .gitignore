@@ -1,6 +1,12 @@
+# User config
+/.screeps.json
+
 # npm and build scripts
 /dist/
 /node_modules/
+
+# TypeScript
+/.tscache/
 
 # Vim
 .*.sw[nop]
