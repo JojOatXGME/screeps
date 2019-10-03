@@ -18,32 +18,21 @@ module.exports = function(grunt) {
         },
         ts: {
             options: {
-                target: 'es6',
-                module: 'commonjs',
-                allowJs: true,
-                isolatedModules: true,
-                noImplicitReturns: true,
-                noImplicitThis: true,
-                strictFunctionTypes: true,
-                strictNullChecks: true,
-                strictPropertyInitialization: true,
                 pretty: process.stdout.isTTY,
             },
             dev: {
-                src: ['src/**'],
                 outDir: 'dist/',
+                tsconfig: true,
                 options: {
-                    rootDir: 'src/',
                     sourceMap: true,
                     inlineSourceMap: true,
                     fast: 'always',
                 },
             },
             prod: {
-                src: ['src/**'],
                 outDir: 'dist/',
+                tsconfig: true,
                 options: {
-                    rootDir: 'src/',
                     sourceMap: false,
                     inlineSourceMap: false,
                     fast: 'never',
