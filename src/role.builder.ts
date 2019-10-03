@@ -1,5 +1,4 @@
-/** @param {Creep} creep **/
-export function run(creep) {
+export function run(creep: Creep) {
     if(creep.memory.building && creep.carry.energy == 0) {
         creep.memory.building = false;
         creep.say('🔄 harvest');

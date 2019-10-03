@@ -1,5 +1,4 @@
-/** @param {Creep} creep **/
-export function run(creep) {
+export function run(creep: Creep) {
     if(creep.memory.upgrading && creep.carry.energy == 0) {
         creep.memory.upgrading = false;
         creep.say('🔄 harvest');
@@ -10,8 +9,14 @@ export function run(creep) {
     }
 
     if(creep.memory.upgrading) {
-        if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+        let controller = creep.room.controller;
+        if (controller == null) {
+            creep.say('❓ No controller');
+        }
+        else {
+            if(creep.upgradeController(controller) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(controller, {visualizePathStyle: {stroke: '#ffffff'}});
+            }
         }
     }
     else {
