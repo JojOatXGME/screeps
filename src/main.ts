@@ -3,7 +3,7 @@ import * as roleHarvester from './role.harvester';
 import * as roleUpgrader from './role.upgrader';
 
 export function loop() {
-    var tower = Game.getObjectById('TOWER_ID');
+    var tower = Game.getObjectById('TOWER_ID') as StructureTower;
     if(tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax
@@ -20,13 +20,13 @@ export function loop() {
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester') {
+        if(creep.memory["role"] == 'harvester') {
             roleHarvester.run(creep);
         }
-        if(creep.memory.role == 'upgrader') {
+        if(creep.memory["role"] == 'upgrader') {
             roleUpgrader.run(creep);
         }
-        if(creep.memory.role == 'builder') {
+        if(creep.memory["role"] == 'builder') {
             roleBuilder.run(creep);
         }
     }
