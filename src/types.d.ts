@@ -1,7 +1,3 @@
-interface Memory {
-    [key: string]: any;
-}
-
 interface CreepMemory {
     role: string;
     upgrading: boolean;
@@ -11,8 +7,11 @@ interface CreepMemory {
 interface FlagMemory {
 }
 
-interface SpawnMemory {
+interface PowerCreepMemory {
 }
 
 interface RoomMemory {
+}
+
+interface SpawnMemory {
 }
