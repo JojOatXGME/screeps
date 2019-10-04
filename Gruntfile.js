@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         clean: {
-            dist: ['dist', '.tscache'],
+            dist: ['dist', '.tsbuildinfo'],
         },
         screeps: {
             options: {
@@ -18,6 +18,7 @@ module.exports = function(grunt) {
         },
         ts: {
             options: {
+                fast: 'never',
                 pretty: process.stdout.isTTY,
             },
             dev: {
@@ -26,7 +27,7 @@ module.exports = function(grunt) {
                 options: {
                     sourceMap: true,
                     inlineSourceMap: true,
-                    fast: 'always',
+                    additionalFlags: '--incremental --tsBuildInfoFile .tsbuildinfo',
                 },
             },
             prod: {
@@ -35,7 +36,6 @@ module.exports = function(grunt) {
                 options: {
                     sourceMap: false,
                     inlineSourceMap: false,
-                    fast: 'never',
                 },
             },
         },
