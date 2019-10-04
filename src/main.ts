@@ -3,6 +3,14 @@ import * as roleHarvester from './role.harvester';
 import * as roleUpgrader from './role.upgrader';
 
 export function loop() {
+
+    // Automatically delete memory of missing creeps
+    for (const name in Memory.creeps) {
+        if (!(name in Game.creeps)) {
+            delete Memory.creeps[name];
+        }
+    }
+
     var tower = Game.getObjectById('TOWER_ID') as StructureTower;
     if(tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
