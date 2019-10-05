@@ -1,12 +1,22 @@
+import * as common from './common';
+import * as roadservice from './roadservice';
 import * as roleBuilder from './role.builder';
 import * as roleHarvester from './role.harvester';
 import * as roleUpgrader from './role.upgrader';
 
 export function loop() {
+    console.log("Tick: " + Game.time);
 
-    // Automatically delete memory of missing creeps
     for (const name in Memory.creeps) {
-        if (!(name in Game.creeps)) {
+        if (name in Game.creeps) {
+            let creep = Game.creeps[name];
+            common.update(creep);
+            if (!common.getLastPos(creep).isEqualTo(creep.pos)) {
+                roadservice.develop(creep.pos);
+            }
+        }
+        else {
+            // Automatically delete memory of missing creeps
             delete Memory.creeps[name];
         }
     }
@@ -38,4 +48,6 @@ export function loop() {
             roleBuilder.run(creep);
         }
     }
+
+    roadservice.degrade();
 }
